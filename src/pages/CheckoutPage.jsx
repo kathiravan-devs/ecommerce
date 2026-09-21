@@ -2,7 +2,7 @@ import './CheckoutPage-header.css'
 import './CheckoutPage.css'
 
 
-export function Checkout() {
+export function CheckoutPage() {
     return (
         <>
             <title>Checkout</title>
