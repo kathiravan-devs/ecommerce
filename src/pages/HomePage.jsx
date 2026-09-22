@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useRef } from 'react';
 import { Header } from '../components/Header';
 import { products } from '../../data/products.js';
@@ -6,8 +7,14 @@ import './HomePage.css'
 
 export function HomePage() {
 
+    axios.get('https://kathiravan-devs.github.io/products/products.json')
+        .then((response) => {
+            console.log(response.data);
+        })
+
 
     const productRef = useRef([]);
+
     function showAdded(index) {
         productRef.current[index].classList.add('added-product-container');
         setTimeout(() => {
