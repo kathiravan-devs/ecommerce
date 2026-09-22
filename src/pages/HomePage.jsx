@@ -1,13 +1,22 @@
+import { useRef } from 'react';
 import { Header } from '../components/Header';
 import { products } from '../../data/products.js';
 import './HomePage.css'
 
 
-
 export function HomePage() {
+
+
+    const productRef = useRef([]);
+    function showAdded(index) {
+        productRef.current[index].classList.add('added-product-container');
+        setTimeout(() => {
+            productRef.current[index].classList.remove('added-product-container');
+        }, 4500)
+    }
+
     return (
         <>
-
             <title>Ecommerce Project</title>
 
             <Header />
@@ -15,9 +24,12 @@ export function HomePage() {
             <div className="home-page">
                 <div className="products-grid">
                     {
-                        products.map((product) => {
+                        products.map((product, index) => {
                             return (
-                                <div key={product.id} className="product-container">
+                                <div key={product.id} className="product-container"
+                                    ref={(element) => {
+                                        productRef.current[index] = element
+                                    }}>
                                     <div className="product-image-container">
                                         <img className="product-image"
                                             src={product.image} />
@@ -56,12 +68,12 @@ export function HomePage() {
 
                                     <div className="product-spacer"></div>
 
-                                    <div className="added-to-cart">
+                                    <div className="added-to-cart show-added-to-cart ">
                                         <img src="images/icons/checkmark.png" />
                                         Added
                                     </div>
 
-                                    <button className="add-to-cart-button button-primary">
+                                    <button className="add-to-cart-button button-primary" onClick={() => showAdded(index)} >
                                         Add to Cart
                                     </button>
                                 </div>
@@ -73,3 +85,30 @@ export function HomePage() {
         </>
     );
 }
+
+
+
+
+/*
+
+It is the another way to show added 
+
+const [addedProduct, setAddedProduct] = useState(null);
+
+function showAdded(index) {
+    setAddedProduct(index);
+
+    setTimeout(() => {
+        setAddedProduct(null);
+    }, 4500);
+}
+
+
+
+<div
+    className={`product-container ${
+        addedProduct === index ? "added-product-container" : ""
+    }`}
+></div>
+
+*/
