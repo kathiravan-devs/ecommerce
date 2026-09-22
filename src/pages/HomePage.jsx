@@ -1,17 +1,20 @@
 import axios from 'axios';
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Header } from '../components/Header';
-import { products } from '../../data/products.js';
+// import { products } from '../../data/products.js';
 import './HomePage.css'
 
 
 export function HomePage() {
 
-    axios.get('https://kathiravan-devs.github.io/products/products.json')
-        .then((response) => {
-            console.log(response.data);
-        })
+    const[products, setProucts] = useState([]);
 
+    useEffect(() => {
+        axios.get('https://kathiravan-devs.github.io/products/products.json')
+            .then((response) => {
+                setProucts(response.data)
+            })
+    },[])
 
     const productRef = useRef([]);
 
