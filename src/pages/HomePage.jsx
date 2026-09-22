@@ -1,18 +1,22 @@
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { Header } from '../components/Header';
-// import { products } from '../../data/products.js';
 import './HomePage.css'
 
 
 export function HomePage() {
 
     const[products, setProucts] = useState([]);
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
-        axios.get('https://kathiravan-devs.github.io/products/products.json')
+        axios.get('https://kathiravan-devs.github.io/api/products.json')
             .then((response) => {
                 setProucts(response.data)
+            })
+            axios.get('/api/cart-items')
+            .then((response) => {
+                setCart(response.data);
             })
     },[])
 
@@ -29,7 +33,7 @@ export function HomePage() {
         <>
             <title>Ecommerce Project</title>
 
-            <Header />
+            <Header cart={cart}/>
 
             <div className="home-page">
                 <div className="products-grid">
@@ -51,7 +55,7 @@ export function HomePage() {
 
                                     <div className="product-rating-container">
                                         <img className="product-rating-stars"
-                                            src={`images/ratings/rating-${product.rating.stars * 10}.png`} />
+                                            src={`https://kathiravan-devs.github.io/api/images/ratings/rating-${product.rating.stars*10}.png`} />
                                         <div className="product-rating-count link-primary">
                                             {product.rating.count}
                                         </div>
