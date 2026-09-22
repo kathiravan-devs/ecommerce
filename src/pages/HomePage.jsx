@@ -1,30 +1,15 @@
-import axios from 'axios';
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Header } from '../components/Header';
 import './HomePage.css'
+import { formatMoney } from '../utils/money';
 
-
-export function HomePage() {
-
-    const[products, setProucts] = useState([]);
-    const [cart, setCart] = useState([])
-
-    useEffect(() => {
-        axios.get('https://kathiravan-devs.github.io/api/products.json')
-            .then((response) => {
-                setProucts(response.data)
-            })
-            axios.get('/api/cart-items')
-            .then((response) => {
-                setCart(response.data);
-            })
-    },[])
+export function HomePage({products, cart}) {
 
     const productRef = useRef([]);
 
     function showAdded(index) {
         productRef.current[index].classList.add('added-product-container');
-        setTimeout(() => {
+        setTimeout(() => {  
             productRef.current[index].classList.remove('added-product-container');
         }, 4500)
     }
@@ -62,7 +47,7 @@ export function HomePage() {
                                     </div>
 
                                     <div className="product-price">
-                                        ${(product.priceCents / 100).toFixed(2)}
+                                        ${formatMoney(product.priceCents)}
                                     </div>
 
                                     <div className="product-quantity-container">
