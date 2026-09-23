@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { Header } from '../../components/Header';
 import { ProductsGrid } from './ProductsGrid';
+import { ResetButton } from '../../components/ResetButton';
 import './HomePage.css'
-
 
 export function HomePage({products, cart, loadCart}) {
 
@@ -24,6 +24,7 @@ export function HomePage({products, cart, loadCart}) {
             <div className="home-page">
                 <ProductsGrid products={products} productRef={productRef} showAdded={showAdded} loadCart={loadCart}/>
             </div>
+            <ResetButton loadCart={loadCart} />
         </>
     );
 }

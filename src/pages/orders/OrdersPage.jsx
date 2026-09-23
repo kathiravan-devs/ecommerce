@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useState, useEffect, Fragment } from 'react';
 import { Header } from '../../components/Header';
-import './OrdersPage.css'
 import { OrdersHeader } from './OrdersHeader';
 import { OrdersDetailsGrid } from './OrdersDetailsGrid';
+import './OrdersPage.css';
+import { ResetButton } from '../../components/ResetButton';
 
 export function OrdersPage({ cart, loadCart }) {
 
@@ -15,7 +16,7 @@ export function OrdersPage({ cart, loadCart }) {
             setOrders(response.data);
         }
         fetchOrdersData()
-    }, []);
+    }, [cart]);
 
     return (
         <>
@@ -35,13 +36,14 @@ export function OrdersPage({ cart, loadCart }) {
 
                                     <OrdersHeader order={order} />
 
-                                    <OrdersDetailsGrid order={order} loadCart={loadCart}  />
+                                    <OrdersDetailsGrid order={order} loadCart={loadCart} />
                                 </div>
                             );
                         })
                     }
                 </div>
             </div>
+            <ResetButton loadCart={loadCart} />
         </>
     );
 } 

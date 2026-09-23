@@ -1,14 +1,13 @@
-import axios from "axios";
-import dayjs from "dayjs";
 import { useState, Fragment } from "react";
 import { Link } from "react-router";
-
+import axios from "axios";
+import dayjs from "dayjs";
 
 export function OrdersDetailsGrid({ order, loadCart }) {
 
     const [addedProductId, setAddedProductId] = useState(null);
 
-    
+
     const addToCart = async (product, quantity) => {
         await axios.post('/api/cart-items', {
             productId: product.id,
@@ -43,7 +42,7 @@ export function OrdersDetailsGrid({ order, loadCart }) {
                                 <div className="product-quantity">
                                     Quantity: {orderedProduct.quantity}
                                 </div>
-                                <button 
+                                <button
                                     type="button"
                                     className={`buy-again-button button-primary ${isBuyed ? "buyed" : ""}`}
                                     onClick={() => addToCart(orderedProduct.product, orderedProduct.quantity)}>
@@ -59,7 +58,7 @@ export function OrdersDetailsGrid({ order, loadCart }) {
                             </div>
 
                             <div className="product-actions">
-                                <Link to={`/tracking?orderId=${order.id}`}>
+                                <Link to={`/tracking/${order.id}/${orderedProduct.product.id}`}>
                                     <button className="track-package-button button-secondary">
                                         Track package
                                     </button>
