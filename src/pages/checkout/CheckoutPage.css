@@ -119,6 +119,41 @@
   margin-left: 3px;
 }
 
+
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.save-quantity-link {
+  display: none;
+}
+
+.update-cart-item-details .save-quantity-link {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.update-cart-item-details .update-quantity-link {
+  display: none;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-input {
+  -moz-appearance: textfield;
+  width: 30px;
+}
+
+
+
 @media (max-width: 1000px) {
   .checkout-page .delivery-options {
     /* grid-column: 1 means this element will be placed
