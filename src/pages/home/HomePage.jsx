@@ -4,7 +4,7 @@ import { ProductsGrid } from './ProductsGrid';
 import './HomePage.css'
 
 
-export function HomePage({products, cart}) {
+export function HomePage({products, cart, loadCart}) {
 
     const productRef = useRef([]);
 
@@ -22,7 +22,7 @@ export function HomePage({products, cart}) {
             <Header cart={cart}/>
 
             <div className="home-page">
-                <ProductsGrid products={products} productRef={productRef} showAdded={showAdded}/>
+                <ProductsGrid products={products} productRef={productRef} showAdded={showAdded} loadCart={loadCart}/>
             </div>
         </>
     );

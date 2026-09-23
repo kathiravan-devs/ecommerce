@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { CheckoutHeader } from './CheckoutHeader';
+import { CheckoutHeader } from '../../components/CheckoutHeader';
 import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './PaymentSummary';
 import './CheckoutPage.css';
@@ -24,15 +24,7 @@ export function CheckoutPage({ cart, loadCart }) {
         }
         deliveryOptionData()
         loadPayment()
-    }, []);
-
-    async function updateDeliveryOption(productId, deliveryOptionId) {
-
-        await axios.put(`/api/cart-items/${productId}`, {
-            deliveryOptionId
-        });
-        loadCart(); // re-fetch cart so this component gets fresh data
-    }
+    }, [cart]);
 
     return (
         <>
@@ -45,7 +37,7 @@ export function CheckoutPage({ cart, loadCart }) {
 
                 <div className="checkout-grid">
 
-                    <OrderSummary deliveryOptions={deliveryOptions} cart={cart} loadPayment={loadPayment} updateDeliveryOption={updateDeliveryOption} />
+                    <OrderSummary deliveryOptions={deliveryOptions} cart={cart} loadCart={loadCart}/>
 
                     <PaymentSummary paymentSummary={paymentSummary} />
 
