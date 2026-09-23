@@ -39,9 +39,7 @@ export function TrackingPage({ cart }) {
     useEffect(() => {
         if (!trackingProduct) return;
         const timer = setTimeout(() => {
-            deliveryPercent > 5
-                ? setBarWidth(deliveryPercent)
-                : setBarWidth(5);
+            setBarWidth(deliveryPercent > 5 ? deliveryPercent : 5);
         }, 100);
         return () => clearTimeout(timer);
     }, [trackingProduct, deliveryPercent]);
@@ -52,7 +50,6 @@ export function TrackingPage({ cart }) {
     const isPreparing = deliveryPercent < 33;
     const isShipped = deliveryPercent >= 33 && deliveryPercent < 100;
     const isDelivered = deliveryPercent === 100;
-
 
     return (
         <>
@@ -67,7 +64,7 @@ export function TrackingPage({ cart }) {
                     </a>
 
                     <div className="delivery-date">
-                        Arriving on {deliveryDate}
+                        {isDelivered ? 'Delivered on' : 'Arriving on'} {deliveryDate}
                     </div>
 
                     <div className="product-info">
