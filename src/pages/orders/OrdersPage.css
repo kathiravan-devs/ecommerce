@@ -146,9 +146,25 @@
   justify-content: center;
 }
 
-.orders-page .buy-again-icon {
+.orders-page .buy-again-icon,
+.buyed-icon {
   width: 20px;
   margin-right: 10px;
+}
+
+.orders-page .buyed .buy-again-icon,
+.orders-page .buyed .buy-again-message {
+  display: none;
+}
+
+.buyed-icon, .buyed-message{
+  display: none;
+}
+
+.buyed .buyed-icon,
+.buyed .buyed-message {
+  display: flex;
+  align-items: center;
 }
 
 .orders-page .product-actions {
