@@ -9,7 +9,6 @@ export function TrackingPage({ cart }) {
 
     const [trackingOrder, setTrackingOrder] = useState(null);
     const [barWidth, setBarWidth] = useState(0);
-    const [now] = useState(() => dayjs().valueOf());
 
     const params = useParams();
     const { orderId, productId } = params;
@@ -28,7 +27,7 @@ export function TrackingPage({ cart }) {
 
     let deliveryPercent = 0;
     if (trackingProduct) {
-        const timePassedMs = now - trackingOrder.orderTimeMs;
+        const timePassedMs = dayjs().valueOf() - trackingOrder.orderTimeMs;
         const totalDeliveryTimeMs = trackingProduct.estimatedDeliveryTimeMs - trackingOrder.orderTimeMs;
         deliveryPercent = (timePassedMs / totalDeliveryTimeMs) * 100;
         if (deliveryPercent > 100) {
@@ -37,11 +36,13 @@ export function TrackingPage({ cart }) {
     }
 
     useEffect(() => {
+        
         if (!trackingProduct) return;
         const timer = setTimeout(() => {
             setBarWidth(deliveryPercent > 5 ? deliveryPercent : 5);
         }, 100);
         return () => clearTimeout(timer);
+        
     }, [trackingProduct, deliveryPercent]);
 
     if (!trackingOrder || !trackingProduct) return null;

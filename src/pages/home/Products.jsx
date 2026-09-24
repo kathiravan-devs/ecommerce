@@ -44,7 +44,7 @@ export function Products({ product, productRef, index, loadCart, showAdded }) {
             </div>
 
             <div className="product-price">
-                ${formatMoney(product.priceCents)}
+                {formatMoney(product.priceCents)}
             </div>
 
             <div className="product-quantity-container">

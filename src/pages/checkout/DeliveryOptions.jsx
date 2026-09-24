@@ -16,7 +16,7 @@ export function DeliveryOptions({ cartItem, deliveryOptions, loadCart }) {
                     let priceString = 'FREE Shipping';
 
                     if (deliveryOption.priceCents > 0) {
-                        priceString = `$${formatMoney(deliveryOption.priceCents)} - Shipping`;
+                        priceString = `${formatMoney(deliveryOption.priceCents)} - Shipping`;
                     }
 
                     const UpdateDeliveryOption = async () => {
