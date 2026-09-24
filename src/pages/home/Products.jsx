@@ -1,11 +1,21 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { formatMoney } from "../../utils/money";
 
 
-export function Products({ product, productRef, index, loadCart, showAdded }) {
+export function Products({ product, index, loadCart }) {
 
     const [quantity, setQuantity] = useState(1);
+    const productRef = useRef([]);
+
+
+        function showAdded(index) {
+            productRef.current[index].classList.add('added-product-container');
+            setTimeout(() => {  
+                productRef.current[index].classList.remove('added-product-container');
+            }, 4500)
+        }
+    
 
     const addToCart = async () => {
         await axios.post('/api/cart-items', {
@@ -25,7 +35,8 @@ export function Products({ product, productRef, index, loadCart, showAdded }) {
         <div className="product-container"
             ref={(element) => {
                 productRef.current[index] = element
-            }}>
+            }}
+            data-testId = 'product-container'>
             <div className="product-image-container">
                 <img className="product-image"
                     data-testid='product-image'

@@ -1,4 +1,4 @@
-import { expect, it, describe, vi } from 'vitest';
+import { expect, it, describe, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/vitest';
@@ -7,11 +7,15 @@ import { Products } from './Products';
 
 vi.mock('axios');
 
+
 describe('Product Component', () => {
 
-    it('displays the product details correctly', () => {
+    let product;
+    let loadCart;
+    let index;
 
-        const product = {
+    beforeEach(() => {
+        product = {
             keywords: ["socks", "sports", "apparel"],
             id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
             image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -20,18 +24,18 @@ describe('Product Component', () => {
             priceCents: 1090,
         };
 
-        const productRef = { current: [] };
-        const index = 0;
-        const loadCart = vi.fn();
-        const showAdded = vi.fn();
+        index = 0;
+        loadCart = vi.fn();
+
+    })
+
+    it('displays the product details correctly', () => {
 
         render(
             <Products
                 product={product}
-                productRef={productRef}
                 index={index}
                 loadCart={loadCart}
-                showAdded={showAdded}
             />
         );
 
@@ -45,27 +49,11 @@ describe('Product Component', () => {
 
     it('add a product to the cart', async () => {
 
-        const product = {
-            keywords: ["socks", "sports", "apparel"],
-            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-            image: "images/products/athletic-cotton-socks-6-pairs.jpg",
-            name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
-            rating: { stars: 4.5, count: 87 },
-            priceCents: 1090,
-        };
-
-        const productRef = { current: [] };
-        const index = 0;
-        const loadCart = vi.fn();
-        const showAdded = vi.fn();
-
         render(
             <Products
                 product={product}
-                productRef={productRef}
                 index={index}
                 loadCart={loadCart}
-                showAdded={showAdded}
             />
         );
 
@@ -75,10 +63,10 @@ describe('Product Component', () => {
         await user.click(addToCartButton);
 
         expect(axios.post).toHaveBeenCalledWith(
-            '/api/cart-items',{
-                productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-                quantity: 1
-            }
+            '/api/cart-items', {
+            productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
+            quantity: 1
+        }
         );
 
         expect(loadCart).toHaveBeenCalled();
