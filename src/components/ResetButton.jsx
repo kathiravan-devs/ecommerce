@@ -8,6 +8,9 @@ export function ResetButton({ loadCart }) {
         loadCart()
     }
 
+
+    // doesn't need now
+
     return (
         <button className="reset-btn" onClick={resetPageData}>
             <img src="public\images\icons\bin.png" alt='bin' />

@@ -3,7 +3,8 @@ import { DeliveryOptions } from "./DeliveryOptions";
 import { CartProduct } from "./CartProduct";
 
 
-export function OrderSummary({ deliveryOptions, cart,  loadCart }) {
+export function OrderSummary({ deliveryOptions, cart, loadCart }) {
+
 
     return (
         <div className="order-summary">
@@ -31,11 +32,22 @@ export function OrderSummary({ deliveryOptions, cart,  loadCart }) {
 
                             </div>
                         </div>
-
                     );
                 })
-            }
 
+            }
+            {
+                cart.length === 0 && (
+                    <div className="empty-message-container">
+                    <span className="empty-message">
+                        Cart is Empty! 
+                    </span>
+                    <button className="view-product button-primary">
+                        View Products
+                    </button>
+                    </div>
+                )
+            }
         </div>
     );
 }

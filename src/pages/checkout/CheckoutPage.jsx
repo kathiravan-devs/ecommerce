@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { CheckoutHeader } from '../../components/CheckoutHeader';
 import { OrderSummary } from './OrderSummary';
 import { PaymentSummary } from './PaymentSummary';
-import { ResetButton } from '../../components/ResetButton';
 import './CheckoutPage.css';
 
 
@@ -45,7 +44,6 @@ export function CheckoutPage({ cart, loadCart }) {
                 </div>
             </div>
 
-            <ResetButton loadCart={loadCart} />
 
         </>
     );

@@ -4,7 +4,6 @@ import { Header } from '../../components/Header';
 import { OrdersHeader } from './OrdersHeader';
 import { OrdersDetailsGrid } from './OrdersDetailsGrid';
 import './OrdersPage.css';
-import { ResetButton } from '../../components/ResetButton';
 
 export function OrdersPage({ cart, loadCart }) {
 
@@ -43,7 +42,7 @@ export function OrdersPage({ cart, loadCart }) {
                     }
                 </div>
             </div>
-            <ResetButton loadCart={loadCart} />
+
         </>
     );
 } 

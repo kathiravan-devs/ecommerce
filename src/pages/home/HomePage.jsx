@@ -1,25 +1,29 @@
+import { useSearchParams } from 'react-router';
 import { Header } from '../../components/Header';
 import { ProductsGrid } from './ProductsGrid';
-import { ResetButton } from '../../components/ResetButton';
 import './HomePage.css'
 
-export function HomePage({products, cart, loadCart}) {
+export function HomePage({ products, cart, loadCart }) {
 
+    const [searchParams] = useSearchParams();
+    const productString = searchParams.get('productString') || '';
+
+    const filteredProducts = products.filter((product) =>
+        product.name.toLowerCase().includes(productString.toLowerCase())
+    );
 
     return (
         <>
             <title>Ecommerce Project</title>
 
-            <Header cart={cart}/>
+            <Header cart={cart} />
 
             <div className="home-page">
-                <ProductsGrid products={products} loadCart={loadCart}/>
+                <ProductsGrid products={filteredProducts} loadCart={loadCart} />
             </div>
-            <ResetButton loadCart={loadCart} />
         </>
     );
 }
-
 
 
 

@@ -167,6 +167,19 @@
        column in the grid). */
     grid-column: 1 / span 2;
   }
+
+  .empty-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 8px;
+    justify-content: center;
+  }
+
+  .view-product {
+    margin-top: 2px;
+    margin-bottom: 2px;
+  }
 }
 
 .checkout-page .delivery-options-title {
@@ -243,4 +256,21 @@
 
   margin-top: 20px;
   margin-bottom: 19px;
+}
+
+.empty-message-container {
+  margin-top: 20px;
+}
+
+.view-product {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 5px;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 19px;
+}
+
+.empty-message {
+  font-size: 18px;
 }
