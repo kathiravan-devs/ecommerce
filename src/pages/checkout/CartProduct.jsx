@@ -47,7 +47,7 @@ export function CartProduct({ cartItem, loadCart }) {
                     {formatMoney(cartItem.product.priceCents)}
                 </div>
                 <div className="product-quantity">
-                    <span>
+                    <span className="quantity-label-container">
                         Quantity: <span className="quantity-label">{cartItem.quantity}</span>
                     </span>
                     <span className="save-quantity-link link-primary">

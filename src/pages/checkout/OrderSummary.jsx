@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import dayjs from "dayjs";
 import { DeliveryOptions } from "./DeliveryOptions";
 import { CartProduct } from "./CartProduct";
@@ -39,12 +40,14 @@ export function OrderSummary({ deliveryOptions, cart, loadCart }) {
             {
                 cart.length === 0 && (
                     <div className="empty-message-container">
-                    <span className="empty-message">
-                        Cart is Empty! 
-                    </span>
-                    <button className="view-product button-primary">
-                        View Products
-                    </button>
+                        <span className="empty-message">
+                            Cart is Empty!
+                        </span>
+                        <Link to={'/'} className="link-router">
+                            <button className="view-product button-primary">
+                                View Products
+                            </button>
+                        </Link>
                     </div>
                 )
             }
